@@ -28,8 +28,7 @@ class BibliothequeGUI(
         val mainPanel = JPanel(BorderLayout())
         mainPanel.border = EmptyBorder(10, 10, 10, 10)
 
-        //TABLEAU DES LIVRES
-        // Définir les colonnes
+    
         tableModel.setColumnIdentifiers(arrayOf("№", "Titre", "Auteur", "ISBN", "Statut"))
         tableLivres.setRowHeight(30)
         tableLivres.getTableHeader().setReorderingAllowed(false)
@@ -37,8 +36,7 @@ class BibliothequeGUI(
         tableLivres.setFont(Font("Arial", Font.PLAIN, 12))
         tableLivres.setSelectionBackground(Color(173, 216, 230))
         tableLivres.setSelectionForeground(Color.BLACK)
-
-        // Définir les largeurs des colonnes
+        
         tableLivres.getColumnModel().getColumn(0).preferredWidth = 50
         tableLivres.getColumnModel().getColumn(1).preferredWidth = 300
         tableLivres.getColumnModel().getColumn(2).preferredWidth = 200
@@ -48,20 +46,15 @@ class BibliothequeGUI(
         val scrollPane = JScrollPane(tableLivres)
         scrollPane.border = BorderFactory.createTitledBorder("📖 Catalogue des livres")
         mainPanel.add(scrollPane, BorderLayout.CENTER)
-
-        //PANNAU D'INFORMATION (MEMBRES)
         val panneauInfo = JPanel(FlowLayout(FlowLayout.LEFT, 10, 5))
         labelMembres.font = Font("Arial", Font.BOLD, 14)
         labelMembres.foreground = Color.BLUE
         panneauInfo.add(labelMembres)
-        mainPanel.add(panneauInfo, BorderLayout.NORTH)  // ← Ajouté en haut
+        mainPanel.add(panneauInfo, BorderLayout.NORTH)
 
-
-        //PANNAU DE CONTRÔLE
         val panneauControle = JPanel(GridLayout(2, 1, 5, 5))
         panneauControle.border = BorderFactory.createTitledBorder("🎮 Actions")
 
-        //Champs de saisie
         val ligneChamps = JPanel(FlowLayout(FlowLayout.CENTER, 15, 10))
 
         ligneChamps.add(JLabel("ISBN du livre:"))
@@ -77,8 +70,6 @@ class BibliothequeGUI(
         ligneChamps.add(champIdMembre)
 
         panneauControle.add(ligneChamps)
-
-        // Boutons
         val ligneBoutons = JPanel(FlowLayout(FlowLayout.CENTER, 10, 10))
 
         val btnEmprunter = JButton("Emprunter")
@@ -94,8 +85,6 @@ class BibliothequeGUI(
         }
 
         panneauControle.add(ligneBoutons)
-
-        //Actions des boutons
         btnEmprunter.addActionListener { emprunterLivre() }
         btnRetourner.addActionListener { retournerLivre() }
         btnAjouter.addActionListener { ajouterLivre() }
@@ -105,7 +94,6 @@ class BibliothequeGUI(
         mainPanel.add(panneauControle, BorderLayout.SOUTH)
         add(mainPanel)
 
-        //Activation des champs
         champISBN.isEnabled = true
         champIdMembre.isEnabled = true
         champISBN.requestFocus()
@@ -130,7 +118,6 @@ class BibliothequeGUI(
             }
         }
 
-        //AFFICHE LE NOMBRE DE MEMBRES
         labelMembres.text = " Membres inscrits : ${bibliotheque.listerMembres().size}"
     }
 
