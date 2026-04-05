@@ -1,5 +1,5 @@
 
-interface BibliothequeService { //roles
+interface BibliothequeService { 
     fun addLivre(livre: livre)
     fun removeLivre(isbn: String):Boolean
     fun searchLivre(livre: String): List<livre>

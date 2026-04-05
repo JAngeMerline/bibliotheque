@@ -2,9 +2,8 @@ class Membre(
     val nom: String,
     val Id: Int
 ) {
-    val emprunts: MutableList<livre> = mutableListOf() // proprietes
+    val emprunts: MutableList<livre> = mutableListOf() 
 
-    // methode EMPRUNTER
     fun emprunter(livre: livre): Boolean {
         return if (livre.estDisponible) {
             emprunts.add(livre)
@@ -16,7 +15,6 @@ class Membre(
             false
         }
     }
-    // methode RETOURNER
     fun retourner(livre: livre): Boolean {
         return if (emprunts.contains(livre)) {
             emprunts.remove(livre)
